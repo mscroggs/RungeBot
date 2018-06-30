@@ -58,7 +58,7 @@ def interpolate_and_rate(f):
     plt.show()
     plt.clf()
 
-    max_e = use[1]/max(c-ys)
+    max_e = use[1]/max(abs(c-ys))
 
     if max_e < 0.1:
         rating = "not a problem"
