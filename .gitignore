@@ -1,3 +1,5 @@
 config.py
 *.pyc
 .*.swp
+done.json
+tweet_me.png
