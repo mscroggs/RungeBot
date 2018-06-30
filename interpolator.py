@@ -60,15 +60,15 @@ def interpolate_and_rate(f):
 
     max_e = use[1]/max(abs(c-ys))
 
-    if max_e < 0.1:
+    if max_e < 1:
         rating = "not a problem"
-    elif max_e < 0.3:
+    elif max_e < 1.2:
         rating = "hardly a problem"
-    elif max_e < 0.5:
+    elif max_e < 1.5:
         rating = "not too bad"
-    elif max_e < 1:
-        rating = "ok"
     elif max_e < 2:
+        rating = "ok"
+    elif max_e < 3:
         rating = "quite bad"
     elif max_e < 4:
         rating = "bad"
