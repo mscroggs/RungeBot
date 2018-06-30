@@ -25,7 +25,6 @@ def get_function(tweet):
 for tweet in query[::-1]:
     if tweet["id"] not in done:
         function = get_function(tweet["text"])
-        print(function)
         done.append(tweet["id"])
         user = tweet["user"]["screen_name"]
         try:
