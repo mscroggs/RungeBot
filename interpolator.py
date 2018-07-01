@@ -40,11 +40,13 @@ def interpolate_and_rate(f):
 
     for n in range(10,21):
         u = uniform(xs,f,n)
-        max_e = max(np.abs(u-ys))
+        c = chebyshev(xs,f,n)
+        max_e = max(np.abs(u-ys)) / max(np.abs(c-ys))
         if max_e > use[1]:
             use = (n,max_e)
 
     n = use[0]
+    max_e = use[1]
 
     plt.plot(xs,ys,"k--")
     u = uniform(xs,f,n,"bo")
@@ -58,7 +60,6 @@ def interpolate_and_rate(f):
     plt.show()
     plt.clf()
 
-    max_e = use[1]/max(np.abs(c-ys))
 
     if max_e < 1:
         rating = "not a problem"
