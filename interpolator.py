@@ -25,6 +25,9 @@ def interpolate(xs,f,points,plot=None):
         plt.plot(points,f(points),plot)
     return interp(points,f(points),xs)
 
+def error_diff(ls1, ls2):
+    return max(np.abs(ls1-ls2)) / max(np.abs(ls2))
+
 def interpolate_and_rate(f):
     N = 500
     xs = np.array([i/N for i in range(-N,N+1)])
@@ -37,11 +40,13 @@ def interpolate_and_rate(f):
     ylim = [ymin-rang/3,ymax+rang/3]
 
     use = (None,0)
+    max2 = 0
 
     for n in range(10,21):
         u = uniform(xs,f,n)
         c = chebyshev(xs,f,n)
-        max_e = max(np.abs(u-ys)) / max(np.abs(c-ys))
+        max_e = error_diff(u,ys) / error_diff(c,ys)
+        max2 = max(error_diff(u,ys),max2)
         if max_e > use[1]:
             use = (n,max_e)
 
@@ -60,8 +65,7 @@ def interpolate_and_rate(f):
     plt.show()
     plt.clf()
 
-
-    if max_e < 1:
+    if max_e < 1 or max2 < 0.1:
         rating = "not a problem"
     elif max_e < 1.2:
         rating = "hardly a problem"
@@ -82,5 +86,4 @@ def interpolate_and_rate(f):
 
     with open("tweet_me.png", 'rb') as f:
         data = f.read()
-
     return data, rating, n
