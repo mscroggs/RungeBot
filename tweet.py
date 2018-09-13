@@ -36,7 +36,7 @@ for tweet in query[::-1]:
                 results = twitter.statuses.update(status=tweet_this, in_reply_to_status_id=tweet["id"])
                 break
 
-            tweet_this = ".@"+user+" Here's your function interpolated using "
+            tweet_this = ".@"+user+" Here's f(x)="+function+" interpolated using "
             tweet_this+= str(n)+" equally spaced points (blue) and "
             tweet_this+= str(n)+" Chebyshev points (red). "
             tweet_this+= "For your function, Runge's phenomenon is "+rating+"."
