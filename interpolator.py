@@ -47,7 +47,7 @@ def interpolate_and_rate(f):
         c = chebyshev(xs,f,n)
         max_e = error_diff(u,ys) / error_diff(c,ys)
         max2 = max(error_diff(u,ys),max2)
-        if max_e > use[1]:
+        if use[0] is None or max_e > use[1]:
             use = (n,max_e)
 
     n = use[0]
