@@ -33,11 +33,6 @@ def interpolate_and_rate(f):
     xs = np.array([i/N for i in range(-N,N+1)])
 
     ys = f(xs)
-    ymin = min(ys)
-    ymax = max(ys)
-    rang = ymax-ymin
-
-    ylim = [ymin-rang/3,ymax+rang/3]
 
     use = (None,0)
     max2 = 0
@@ -53,16 +48,22 @@ def interpolate_and_rate(f):
     n = use[0]
     max_e = use[1]
 
-    plt.plot(xs,ys,"k--")
     u = uniform(xs,f,n,"bo")
-    plt.plot(xs,u,"b-")
     c = chebyshev(xs,f,n,"ro")
+
+    ymin = min(c)
+    ymax = max(c)
+    rang = ymax-ymin
+
+    ylim = [ymin-rang/3,ymax+rang/3]
+
+    plt.plot(xs,ys,"k--")
+    plt.plot(xs,u,"b-")
     plt.plot(xs,c,"r-")
 
     plt.xlim([-1,1])
+    plt.ylim(ylim)
     plt.savefig("tweet_me.png")
-    plt.show()
-    plt.clf()
 
     if max_e < 1 or max2 < 0.1:
         rating = "not a problem"
