@@ -60,7 +60,6 @@ def interpolate_and_rate(f):
     plt.plot(xs,c,"r-")
 
     plt.xlim([-1,1])
-    plt.ylim(ylim)
     plt.savefig("tweet_me.png")
     plt.show()
     plt.clf()

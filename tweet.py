@@ -42,6 +42,7 @@ for tweet in query[::-1]:
             tweet_this+= "For your function, Runge's phenomenon is "+rating+"."
 
             results = twitter.statuses.update_with_media(status=tweet_this, media=data, in_reply_to_status_id=tweet["id"])
+            print(tweet_this)
             break
 
 with open("done.json","w") as f:
