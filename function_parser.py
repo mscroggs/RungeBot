@@ -4,6 +4,6 @@ class ParsingError(BaseException):
     pass
 
 def parse(func):
-    parsed = Expression(func,"x")
+    parsed = Expression(func,["x"])
     return parsed
 
