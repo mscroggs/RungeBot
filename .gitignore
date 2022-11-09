@@ -3,3 +3,4 @@ config.py
 .*.swp
 done.json
 tweet_me.png
+mdon.secret
