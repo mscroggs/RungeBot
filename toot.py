@@ -29,10 +29,12 @@ for toot in mdon.notifications():
             except TypeError:
                 toot_this = f"@{user} I couldn't parse your function. Sorry."
                 mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
+                print(toot_this)
                 break
             except:
                 toot_this = f"@{user} Something went wrong. @mscroggs: Can you fix me please."
                 mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
+                print(toot_this)
                 break
 
             img = mdon.media_post("toot_me.png")
@@ -42,10 +44,10 @@ for toot in mdon.notifications():
                 f"{n} equally spaced points (blue) and {n} Chebyshev points (red). "
                 f"For your function, Runge's phenomenon is {rating}."
             )
+            print(toot_this)
 
             results = mdon.status_post(
                 status=toot_this, media_ids=img, in_reply_to_id=toot["status"]["id"])
-            print(toot_this)
             break
 
 with open("mdone.json", "w") as f:

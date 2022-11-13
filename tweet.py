@@ -35,11 +35,13 @@ for tweet in query[::-1]:
                 tweet_this = f".@{user} I couldn't understand your function. Sorry."
                 results = twitter.statuses.update(
                     status=tweet_this, in_reply_to_status_id=tweet["id"])
+                print(tweet_this)
                 break
             except:
                 tweet_this = f".@{user} Something went wrong. @mscroggs: Can you fix me please."
                 results = twitter.statuses.update(
                     status=tweet_this, in_reply_to_status_id=tweet["id"])
+                print(tweet_this)
                 break
 
             tweet_this = (

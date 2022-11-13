@@ -9,6 +9,5 @@ class ParsingError(BaseException):
 def parse(func):
     func = func.replace("^", "**")
     func = re.sub(r"([0-9])x", r"\1*x", func)
-    print(func)
     parsed = Expression(func, ["x"])
     return parsed
