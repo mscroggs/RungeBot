@@ -36,6 +36,11 @@ for tweet in query[::-1]:
                 results = twitter.statuses.update(
                     status=tweet_this, in_reply_to_status_id=tweet["id"])
                 break
+            except:
+                tweet_this = f".@{user} Something went wrong. @mscroggs: Can you fix me please."
+                results = twitter.statuses.update(
+                    status=tweet_this, in_reply_to_status_id=tweet["id"])
+                break
 
             tweet_this = (
                 f".@{user} Here's f(x)={function} interpolated using "

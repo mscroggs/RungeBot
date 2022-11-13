@@ -28,7 +28,11 @@ for toot in mdon.notifications():
                 f = fp.parse(function)
                 data, rating, n = ip.interpolate_and_rate(f, fname="toot_me")
             except TypeError:
-                toot_this = f".@{user} I couldn't understand your function. Sorry."
+                toot_this = f".@{user} I couldn't parse your function. Sorry."
+                mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
+                break
+            except:
+                toot_this = f".@{user} Something went wrong. @mscroggs: Can you fix me please."
                 mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
                 break
 
