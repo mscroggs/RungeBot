@@ -2,5 +2,7 @@ config.py
 *.pyc
 .*.swp
 done.json
+mdone.json
 tweet_me.png
+toot_me.png
 mdon.secret

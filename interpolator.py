@@ -89,6 +89,6 @@ def interpolate_and_rate(f, fname="tweet_me"):
     else:
         rating = "unbelievably bad"
 
-    with open("tweet_me.png", 'rb') as f:
+    with open(f"{fname}.png", 'rb') as f:
         data = f.read()
     return data, rating, n
