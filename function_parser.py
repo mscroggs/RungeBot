@@ -6,5 +6,6 @@ class ParsingError(BaseException):
 
 
 def parse(func):
+    func = func.replace("^", "**")
     parsed = Expression(func, ["x"])
     return parsed
