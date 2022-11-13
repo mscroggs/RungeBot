@@ -11,5 +11,9 @@ def parse(func):
     func = func.replace("exp", "e**")
 
     func = re.sub(r"([0-9])x", r"\1*x", func)
+    func = re.sub(r"-x\*\*([0-9]+)", r"-(x**\1)", func)
+
+    print(func)
+
     parsed = Expression(func, ["x"])
     return parsed
