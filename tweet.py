@@ -1,6 +1,4 @@
-from twitter import *
-from random import choice
-from datetime import datetime
+from twitter import Twitter, OAuth
 import json
 
 import config
@@ -15,12 +13,14 @@ twitter = Twitter(auth=OAuth(config.access_key, config.access_secret,
 
 query = twitter.statuses.mentions_timeline()
 
+
 def get_function(tweet):
     tweet = "".join(tweet.split())
     if "f(x)=" in tweet:
         return tweet.split("f(x)=")[1]
     else:
         return "NO FUNCTION"
+
 
 for tweet in query[::-1]:
     if tweet["id"] not in done:
@@ -32,19 +32,21 @@ for tweet in query[::-1]:
                 f = fp.parse(function)
                 data, rating, n = ip.interpolate_and_rate(f)
             except TypeError:
-                tweet_this = ".@"+user+" I couldn't understand your function. Sorry."
-                results = twitter.statuses.update(status=tweet_this, in_reply_to_status_id=tweet["id"])
+                tweet_this = f".@{user} I couldn't understand your function. Sorry."
+                results = twitter.statuses.update(
+                    status=tweet_this, in_reply_to_status_id=tweet["id"])
                 break
 
-            tweet_this = ".@"+user+" Here's f(x)="+function+" interpolated using "
-            tweet_this+= str(n)+" equally spaced points (blue) and "
-            tweet_this+= str(n)+" Chebyshev points (red). "
-            tweet_this+= "For your function, Runge's phenomenon is "+rating+"."
+            tweet_this = (
+                f".@{user} Here's f(x)={function} interpolated using "
+                f"{n} equally spaced points (blue) and {n} Chebyshev points (red). "
+                f"For your function, Runge's phenomenon is {rating}."
+            )
 
-            results = twitter.statuses.update_with_media(status=tweet_this, media=data, in_reply_to_status_id=tweet["id"])
+            results = twitter.statuses.update_with_media(
+                status=tweet_this, media=data, in_reply_to_status_id=tweet["id"])
             print(tweet_this)
             break
 
-with open("done.json","w") as f:
-    json.dump(done,f)
-
+with open("done.json", "w") as f:
+    json.dump(done, f)
