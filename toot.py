@@ -21,7 +21,7 @@ for toot in mdon.notifications():
     if toot["type"] == "mention" and toot["status"]["id"] not in done:
         function = get_function(toot["status"]["content"])
         done.append(toot["status"]["id"])
-        user = toot["account"]["username"]
+        user = toot["account"]["acct"]
         if function is not None:
             try:
                 f = fp.parse(function)
