@@ -50,7 +50,10 @@ def interpolate_and_rate(f, fname="tweet_me"):
         ])
 
         ys = f(xs)
-        try:
+        for i in ys:
+            if np.isnan(i):
+                break
+        else:
             use = (None, 0)
             max2 = 0
 
@@ -104,6 +107,4 @@ def interpolate_and_rate(f, fname="tweet_me"):
             with open(f"{fname}.png", 'rb') as f:
                 data = f.read()
             return data, rating, n
-        except BaseException:
-            pass
     raise InterpolationError("Could not interpolate function")
