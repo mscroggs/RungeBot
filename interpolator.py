@@ -49,11 +49,11 @@ def interpolate_and_rate(f, fname="tweet_me"):
             for i in range(N)
         ])
 
-        ys = f(xs)
-        for i in ys:
-            if np.isnan(i):
-                break
-        else:
+        try:
+            ys = f(xs)
+            for i in ys:
+                if np.isnan(i):
+                    raise ZeroDivisionError
             use = (None, 0)
             max2 = 0
 
@@ -62,6 +62,8 @@ def interpolate_and_rate(f, fname="tweet_me"):
                 c = chebyshev(xs, f, n, xlim)
                 max_e = error_diff(u, ys) / error_diff(c, ys)
                 max2 = max(error_diff(u, ys), max2)
+                if np.isnan(max2) or np.isnan(max_e):
+                    raise ZeroDivisionError
                 if use[0] is None or max_e > use[1]:
                     use = (n, max_e)
 
@@ -107,4 +109,6 @@ def interpolate_and_rate(f, fname="tweet_me"):
             with open(f"{fname}.png", 'rb') as f:
                 data = f.read()
             return data, rating, n
+        except ZeroDivisionError:
+            pass
     raise InterpolationError("Could not interpolate function")
