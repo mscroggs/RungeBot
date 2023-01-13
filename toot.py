@@ -1,8 +1,6 @@
 from mastodon import Mastodon
 import json
-
-import function_parser as fp
-import interpolator as ip
+from prepare_tweet import create_tweet
 
 with open("mdone.json") as f:
     done = json.load(f)
@@ -24,8 +22,8 @@ for toot in mdon.notifications():
         done.append(toot["status"]["id"])
         user = toot["account"]["acct"]
 
-        tweet_this, data = create_tweet(toot["status"]["content"], user, fname="toot_me")
-        if tweet_this is not None:
+        toot_this, data = create_tweet(toot["status"]["content"], user, fname="toot_me")
+        if toot_this is not None:
             if data is None:
                 mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
             else:

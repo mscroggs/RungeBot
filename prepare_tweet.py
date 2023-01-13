@@ -1,4 +1,3 @@
-import config
 import function_parser as fp
 import interpolator as ip
 
@@ -19,8 +18,10 @@ def create_tweet(function_string, user, fname="tweet_me"):
             data, rating, n = ip.interpolate_and_rate(f, fname=fname)
         except TypeError:
             return f".@{user} I couldn't understand your function. Sorry.", None
-        except InterpolationError:
-            return f".@{user} I had trouble evaluating your function. Is it undefined for some values? @mscroggs: I might need fixing.", None
+        except ip.InterpolationError:
+            return (f".@{user} I had trouble evaluating your function. "
+                    "Is it undefined for some values? "
+                    "@mscroggs: I might need fixing."), None
         except BaseException:
             return f".@{user} Something went wrong. @mscroggs: Can you fix me please.", None
 
@@ -29,4 +30,3 @@ def create_tweet(function_string, user, fname="tweet_me"):
             f"{n} equally spaced points (blue) and {n} Chebyshev points (red). "
             f"For your function, Runge's phenomenon is {rating}."
         ), data
-

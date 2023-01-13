@@ -1,10 +1,6 @@
 from twitter import Twitter, OAuth
 import json
-
 import config
-import function_parser as fp
-import interpolator as ip
-
 from prepare_tweet import create_tweet
 
 with open("done.json") as f:
