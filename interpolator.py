@@ -10,13 +10,15 @@ class InterpolationError(BaseException):
 
 
 def uniform_points(n, xlim=[-1, 1]):
+    if n == 1:
+        return np.array([sum(xlim) / 2])
     return np.array([xlim[0] + (xlim[1] - xlim[0]) * i / (n - 1)
                      for i in range(n)])
 
 
 def chebyshev_points(n, xlim=[-1, 1]):
     return np.array([
-        xlim[0] + (xlim[1] - xlim[0]) * (1 + np.cos((2 * i + 1) / (2 * n) * np.pi) / 2)
+        xlim[0] + (xlim[1] - xlim[0]) * (1 + np.cos((2 * i + 1) / (2 * n) * np.pi)) / 2
         for i in range(n)
     ])
 
