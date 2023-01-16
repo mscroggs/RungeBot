@@ -11,6 +11,10 @@ def parse(func):
     func = func.replace("exp", "e**")
     func = func.replace(")(", ")*(")
 
+    func = func.replace("arctan", "atan")
+    func = func.replace("arcsin", "asin")
+    func = func.replace("arccos", "acos")
+
     func = re.sub(r"([0-9])(A-Za-z)", r"\1*\2", func)
     func = re.sub(r"\)(A-Za-z)", r")*\1", func)
     func = re.sub(r"-x\*\*([0-9]+)", r"-(x**\1)", func)
