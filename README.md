@@ -9,3 +9,7 @@ Tweeting
 --------
 To get RungeBot to interpolate a function for you, tweet `@RungeBot f(x)=[your function here]` or toot `@RungeBot@mathstodon.xyz f(x)=[your function here]`.
 It will reply with a picture and it will tell you how bad Runge's phenomenon is for your function.
+
+Dependencies
+------------
+RungeBot uses [my fork of the Equation package](https://github.com/mscroggs/Equation).
