@@ -35,8 +35,8 @@ def chebyshev(xs, f, n, xlim=[-1, 1], plot=None):
 
 def interpolate(xs, f, points, plot=None):
     if plot is not None:
-        plt.plot(points, f(points), plot)
-    return interp(points, f(points), xs)
+        plt.plot(points, np.array([f(p) for p in points]), plot)
+    return interp(points, np.array([f(p) for p in points]), xs)
 
 
 def error_diff(ls1, ls2):
@@ -45,14 +45,14 @@ def error_diff(ls1, ls2):
 
 def interpolate_and_rate(f, fname="tweet_me"):
     N = 500
-    for xlim in [[-1, 1], [0, 1], [0.1, 1]]:
+    for xlim in [[-1, 1], [0, 1], [0.1, 1], [1, 2], [2, 3], [-1, -2]]:
         xs = np.array([
             xlim[0] + i / (N - 1) * (xlim[1] - xlim[0])
             for i in range(N)
         ])
 
         try:
-            ys = f(xs)
+            ys = np.array([f(i) for i in xs])
             for i in ys:
                 if np.isnan(i):
                     raise ZeroDivisionError
