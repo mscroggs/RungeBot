@@ -20,8 +20,8 @@ def parse(func):
 
     func = func.replace("ln", "log")
 
-    func = re.sub(r"([0-9])(A-Za-z)", r"\1*\2", func)
-    func = re.sub(r"\)(A-Za-z)", r")*\1", func)
+    func = re.sub(r"([0-9])([A-Za-z])", r"\1*\2", func)
+    func = re.sub(r"\)([A-Za-z])", r")*\1", func)
     func = re.sub(r"-x\*\*([0-9]+)", r"-(x**\1)", func)
 
     print(func)
