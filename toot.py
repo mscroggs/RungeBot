@@ -22,7 +22,9 @@ for toot in mdon.notifications():
         done.append(toot["status"]["id"])
         user = toot["account"]["acct"]
 
-        toot_this, data = create_tweet(toot["status"]["content"], user, fname="toot_me")
+        toot_this, data = create_tweet(
+            toot["status"]["content"].replace("</p>", "").replace("<p>", ""),
+            user, fname="toot_me")
         if toot_this is not None:
             if data is None:
                 mdon.status_post(toot_this, in_reply_to_id=toot["status"]["id"])
