@@ -28,6 +28,13 @@ def parse(func):
     func = func.replace("cosec x", "cosec(x)")
     func = func.replace("cot x", "cot(x)")
     func = func.replace("log x", "log(x)")
+    func = func.replace("cosx", "cos(x)")
+    func = func.replace("sinx", "sin(x)")
+    func = func.replace("tanx", "tan(x)")
+    func = func.replace("secx", "sec(x)")
+    func = func.replace("cosecx", "cosec(x)")
+    func = func.replace("cotx", "cot(x)")
+    func = func.replace("logx", "log(x)")
 
     func = re.sub(r"([0-9])([A-Za-z])", r"\1*\2", func)
     func = re.sub(r"\)([A-Za-z])", r")*\1", func)
