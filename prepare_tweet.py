@@ -17,7 +17,7 @@ def create_tweet(function_string, user, fname="tweet_me"):
 
     # Commonly used functions that are unsupported
     if "!" in function:
-        return f".@{user} Sorry, I don't yet understand \"!\".", None
+        return f".@{user} Sorry, I don't yet understand \"!\", you can use \"factorial(...)\" instead.", None
     if "//" in function:
         return f".@{user} Sorry, I don't yet understand \"//\".", None
 
