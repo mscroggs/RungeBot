@@ -1,5 +1,4 @@
 from mastodon import Mastodon
-import json
 import sys
 from prepare_tweet import create_tweet
 
@@ -17,7 +16,7 @@ def replied(id):
 
 
 for toot in mdon.notifications():
-    if toot["type"] == "mention" and  not replied(toot["status"]["id"]):
+    if toot["type"] == "mention" and not replied(toot["status"]["id"]):
         user = toot["account"]["acct"]
 
         toot_this, data = create_tweet(
