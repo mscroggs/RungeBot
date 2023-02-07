@@ -14,6 +14,13 @@ def create_tweet(function_string, user, fname="tweet_me"):
     function = get_function(function_string)
     if function == "NO FUNCTION":
         return None, None
+
+    # Commonly used functions that are unsupported
+    if "!" in function:
+        return f".@{user} Sorry, I don't yet understand \"!\".", None
+    if "//" in function:
+        return f".@{user} Sorry, I don't yet understand \"//\".", None
+
     try:
         f = fp.parse(function)
         data, rating, n = ip.interpolate_and_rate(f, fname=fname)
