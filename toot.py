@@ -9,7 +9,7 @@ mdon = Mastodon(
 
 
 def replied(id):
-    for d in mdon.status_context(id):
+    for d in mdon.status_context(id)["descendants"]:
         if "account" in d and "username" in d["account"] and d["account"]["username"] == "RungeBot":
             return True
     return False
