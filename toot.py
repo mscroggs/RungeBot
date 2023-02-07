@@ -1,8 +1,10 @@
 from mastodon import Mastodon
 import sys
 from prepare_tweet import create_tweet
+from datetime import datetime, timedelta, timezone
 
 test = "test" in sys.argv
+cutoff = datetime.now(timezone(offset=timedelta())) - timedelta(days=1)
 
 mdon = Mastodon(
     access_token="mdon.secret", api_base_url="https://mathstodon.xyz")
@@ -16,6 +18,9 @@ def replied(id):
 
 
 for toot in mdon.notifications():
+    print(toot["created_at"])
+    if toot["created_at"] < cutoff:
+        break
     if toot["type"] == "mention" and not replied(toot["status"]["id"]):
         user = toot["account"]["acct"]
 
