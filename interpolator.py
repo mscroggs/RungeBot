@@ -77,7 +77,7 @@ def interpolate_and_rate(f, fname="tweet_me"):
 
             ymin = min(c)
             ymax = max(c)
-            rang = ymax-ymin
+            rang = max(10**-10, ymax-ymin)
 
             ylim = [ymin-rang/3, ymax+rang/3]
 
