@@ -7,6 +7,9 @@ class ParsingError(BaseException):
 
 
 def parse(func):
+    func = func.replace("{", "(")
+    func = func.replace("}", ")")
+    func = func.replace("−", "-")
     func = func.replace("^", "**")
     func = func.replace("exp", "e**")
     func = func.replace(")(", ")*(")
